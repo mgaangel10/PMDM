@@ -29,7 +29,7 @@ $(document).ready(function(){
         var abecedario = ['A', 'B', 'C', 'D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
         var palabraIgual = $('#texto').val().toUpperCase();
-
+        var saltos = parseInt($('#saltos').val());
         var palabraResultado='';
     for (var index = 0; index < palabraIgual.length; index++) {
 
@@ -42,7 +42,7 @@ $(document).ready(function(){
             // se le pone el += para que vaya guardando todos los carecteres que encuente iguales , si solo pusieramos el = solo guaradria el ultimo caracter 
             // es decir si ponemos que descrife ABC utilzando el += guardaria todas las letras descifradas . Pero si solo ponemos el = solo guardaria la letra descrifada de la C qu seria F 
 
-            palabraResultado+=abecedario[(indice + 3)% abecedario.length]
+            palabraResultado+=abecedario[(indice + saltos)% abecedario.length]
             
         } else{
 

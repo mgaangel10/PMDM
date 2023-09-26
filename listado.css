@@ -1,0 +1,28 @@
+body{
+    background-color: black;
+}
+
+.flex{
+    display: flex;
+    margin-left: 9%;
+    margin-top: 5%;
+    ;
+}
+.img{
+    margin: 6%;
+    border-radius: 30pt;
+}
+ 
+.header{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+  
+}
+form{
+    margin: 0 auto;
+}
+nav{
+    background-color: transparent;
+}

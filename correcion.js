@@ -28,15 +28,23 @@ $(document).ready(function(){
         $('#btn').html('solucion incorrecta');
     }
     })
-
+    $(document).on('input','#url',function(){
+        var urlC=$('#url').val();
+    if (urlC != '') {
+        $('#btnUrl').addClass('btn btn-primary')
+    }
+    })
+    
     $(document).on('click','#btnUrl', function(){
         var url = $('#url').val();
-        $('#urlG').html(url+'.com')
-        if (url=='') {
+        url.toLowerCase().replace(' ','-');
+        $('#urlG').html(url.toLowerCase().trim().replace(' ','-')+'.com') 
+        if (url.toLowerCase().replace(' ','-')=='') {
             $('#btnUrl').addClass('is-invalid');
-            $('#btnUrl').html('No haa nada que generar');
+            $('#btnUrl').html('No hay nada que generar');
             
         } else {
+           
             $('#urlG').removeClass('d-none')
 
         }
