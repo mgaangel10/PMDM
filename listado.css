@@ -4,7 +4,7 @@ body{
 
 .flex{
     display: flex;
-    margin-left: 9%;
+    
     margin-top: 5%;
     ;
 }
@@ -26,3 +26,7 @@ form{
 nav{
     background-color: transparent;
 }
+ul{
+    margin: 0 auto;
+}
+
