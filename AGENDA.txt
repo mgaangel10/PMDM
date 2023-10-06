@@ -1,0 +1,5 @@
+PARA EL FINDE
+	-terminar el script
+	-buscar alguana forma de procesar el csv
+	-añadir un parametro de opcion (--head o-h)
+	-Buscar baeldon tn,awk,...

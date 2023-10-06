@@ -43,10 +43,12 @@ $(document).ready(function () {
 
       }).done(function(respuesta){    
 
-        $('#mod').html(respuesta.name);
-        $('#films').html(respuesta.gender);
-        $('#people').html(respuesta.skin_color);
-        $('#vehicules').html(respuesta.eye_color);
+        $('#mod').text(respuesta.name);
+        $('#films').text(respuesta.gender);
+        $('#people').text(respuesta.skin_color);
+        $('#vehicules').text(respuesta.eye_color);
+        $('#exampleModal').modal('show');
+
 
           
       
