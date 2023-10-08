@@ -4,5 +4,20 @@ PARA EL FINDE
 	-añadir un parametro de opcion (--head o-h)
 	-Buscar baeldon tn,awk,...
 	-humanize time
+		{
+			<dependency>
+    <groupId>com.github.mfornos</groupId>
+    <artifactId>humanize-slim</artifactId>
+    <version>1.2.2</version>
+</dependency>
+
+	EN LA CLASE
+	import humanize.Humanize;
+	int tiempo = 60;  // tiempo en minutos
+
+        String resultado = Humanize.duration(tiempo * 60); en segundos
+	
+	
+	
 	-lambda
 	-plugin Jpa buggi
