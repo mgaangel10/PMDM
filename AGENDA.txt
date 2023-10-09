@@ -21,3 +21,7 @@ PARA EL FINDE
 	
 	-lambda
 	-plugin Jpa buggi
+
+LOS RECORDS NO PERMITEN HERENCIA
+Ver Json views
+Ver @JsonIgnore
