@@ -25,3 +25,5 @@ PARA EL FINDE
 LOS RECORDS NO PERMITEN HERENCIA
 Ver Json views
 Ver @JsonIgnore
+
+para casa comando:npm i -g typescript
