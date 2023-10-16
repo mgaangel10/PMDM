@@ -27,3 +27,7 @@ Ver Json views
 Ver @JsonIgnore
 
 para casa comando:npm i -g typescript
+crear un proyecto de angular ng new [nombre del rpoyecto]
+meter angular botstrap
+crear modulo ng g m [nombre]
+importar formsmodul en el app
