@@ -31,3 +31,7 @@ crear un proyecto de angular ng new [nombre del rpoyecto]
 meter angular botstrap
 crear modulo ng g m [nombre]
 importar formsmodul en el app
+------------------------------------
+PREGUNTAR A LUISMI
+como hacer el dto o el servicio para cuando una bicicleta este en uso o cuando no este en uso
+como hacer lo mismo pero para cuando sea el findByid de bicicleta para la lista de usuario y la de uso
