@@ -11,14 +11,19 @@ export class FormComponent {
    apellidos:string="";
    nif:string="";
    telefono:number=0;
-   hombre:string="hombre"
-   mujer:string="mujer"
+   hombre:number=0;
+   mujer:string=""
    amigo:string=""
    buscando:string=""
    otro:string=""
   profesor:string=""
+  contra:string=""
+  repeatContra:string=""
    getResultado(){
-    return console.log(this.nombre,this.apellidos,this.nif,this.telefono,this.profesor,this.amigo,this.buscando,this.hombre,this.mujer,this.otro)
+    if(this.contra===this.repeatContra){
+      return console.log(this.nombre,this.apellidos,this.nif,this.telefono,this.profesor,this.amigo,this.buscando,this.hombre)
+    }
+    
    }
    
 
