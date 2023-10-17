@@ -1,0 +1,36 @@
+<div class="mb-3 col-1 ">
+    <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nombre" value="" [(ngModel)]="nombre">
+  </div>
+  <div class="mb-3 col-1 ">
+    <label for="exampleFormControlInput1" class="form-label">Apellidos</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Apellidos" [(ngModel)]="apellidos">
+  </div>
+  <div class="mb-3 col-1 ">
+    <label for="exampleFormControlInput1" class="form-label">NIF</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="NIF" [(ngModel)]="nif">
+  </div>
+  <div class="mb-3 col-1 ">
+    <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="telefono" [(ngModel)]="telefono">
+  </div>
+  <select class="form-select col-1" aria-label="Default select example ">
+    <option selected>Sexo</option>
+    <option value="1">Hombre</option>
+    <option value="2">Mujer</option>
+    <option value="3">Otro</option>
+  </select>
+  <select class="form-select col-1" aria-label="Default select example">
+    <option selected>Como conociste la pagina?</option>
+    <option value="1" [(ngModel)]="profesor" >Por el profesor</option>
+    <option value="2">Buscando por google</option>
+    <option value="3">Atraves de un amigo</option>
+  </select>
+  <div class="mb-3 row col-1">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword">
+    </div>
+  </div>
+
+  <button (click)="getResultado()" type="button" class="btn btn-primary">Enviar</button>
