@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Result } from 'src/app/modules/modules.module';
-import { PokemonService } from 'src/app/services/pokemon.service';
+import { PokemonService } from '../../services/pokemon.service';
+import { Result } from '../../modules/modules.module';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @Component({
@@ -12,11 +14,17 @@ export class PokemonListComponent implements OnInit{
 pokemonList: Result[] = [];
 
 
-
-constructor (private pokemonService: PokemonService){}
+constructor (private pokemonService: PokemonService,private modalService: NgbModal){}
   ngOnInit(): void {
     this.pokemonService.getPokemonList().subscribe(respuest =>{
       this.pokemonList=respuest.results;
     });
   }
+  
+  openModal(modal: any) {
+    
+    this.modalService.open(modal);
+   
+  }
+
 }

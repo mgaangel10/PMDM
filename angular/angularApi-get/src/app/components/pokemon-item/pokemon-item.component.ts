@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Result } from 'src/app/modules/modules.module';
+import { Result } from '../../modules/modules.module';
 
 @Component({
   selector: 'app-pokemon-item',
