@@ -8,7 +8,7 @@ import { Result } from '../../modules/modules.module';
 })
 export class PokemonItemComponent {
   @Input() poke!: Result;
-  @Output() pokeClic = new  EventEmitter<String>(); 
+  @Output() pokeClic = new  EventEmitter<string>(); 
 
   imagenPokemon(){
   const URLIMG = this.poke.url.split('/').reverse()[1];
@@ -16,7 +16,9 @@ export class PokemonItemComponent {
   }
 
   detallesPokemon(){
-    this.pokeClic.emit(this.poke.name);
+    this.pokeClic.emit(this.poke.url);
+   
   }
 
+  
 }

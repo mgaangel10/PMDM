@@ -1,23 +1,38 @@
-<ng-template #pokemonModal let-modal><div class="modal"  tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" ></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div></ng-template>
+
 
 <div class="row">
   <app-pokemon-item class="mt-2 col-3" *ngFor="let p of pokemonList" [poke]="p"
-  (pokeClic)="openModal(pokemonModal)"></app-pokemon-item>
+  (pokeClic)="openModal(pokemodal,$event)"></app-pokemon-item>
 </div>
+
+
+<ng-template #pokemodal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+				<label for="dateOfBirth">{{poke.name}}</label>
+				<div class="input-group">
+					<input
+						id="dateOfBirth"
+						class="form-control"
+						placeholder="yyyy-mm-dd"
+						name="dp"
+						ngbDatepicker
+						#dp="ngbDatepicker"
+					/>
+					<button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+	</div>
+</ng-template>
+<ngb-pagination [collectionSize]="20" [(page)]="page" [maxSize]="20" [boundaryLinks]="true"></ngb-pagination>
+
 

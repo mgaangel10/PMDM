@@ -39,3 +39,17 @@ como hacer lo mismo pero para cuando sea el findByid de bicicleta para la lista 
 comando angular materials ng add angular/material
 visual studio: jhonpapa
 *ngif: es un if en el html del componente; *ngIf="edad"<18//*ngIf="ismenordeEdad()"
+-------------------------------------------------
+Acceso a datos
+en una asociacion de oneToMany hay que poner mappedBy=""
+es decir 
+Alumno 1..*  -----------------> 1 Cursoos
+
+-------Almuno----------------        --------------Cursos--------------
+@ManyToOne
+Cursos curso                 |	     |  @oneToMany(mappedBy="curso")
+			     |	     |  List<Alumno> alumnos
+			     |
+
+Los metodos helper lo ponemos en el lado que no tiene el mappedBy
+
