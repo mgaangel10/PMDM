@@ -30,12 +30,12 @@ constructor (private pokemonService: PokemonService,private modalService: NgbMod
     });
   }
   
- /* reloadPage(){
-    this.pokemonService.getPokemonPage(this.page*20).subscribe(resp =>{
-      this.
-    })
+  reloadPage() {
+    this.pokemonService.getPokemonPage(this.page * 20).subscribe(resp => {
+      this.pokemonList = resp.results;
+    });
   }
-*/
+  
   openModal(pokemodal: any,url: string) {
     this.pokemonService.getPokemonDetails(url).subscribe(resp=>{
       this.poke=resp;
