@@ -15,7 +15,7 @@ import { Observable, map, startWith } from 'rxjs';
 export class PokeListComponent implements OnInit {
   pokeList: Result[]=[];
   myControl = new FormControl('');
-  options: string[] = ['hiedra'];
+  options: string[] = ['bulbasaur'];
   filteredOptions!: Observable<string[]>
   poke!:Result;
   constructor(private pokeservice: PokeServicioService,private modalService: NgbModal){}

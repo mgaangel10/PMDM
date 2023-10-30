@@ -51,5 +51,42 @@ Cursos curso                 |	     |  @oneToMany(mappedBy="curso")
 			     |	     |  List<Alumno> alumnos
 			     |
 
+
+fetch(eager,lazy)-Select (n+1)
+		-Subselect
+		-Join (join fetch)-Consultas explicitas
+				-Grafos de entidad
+
+LOS METODOS HELPERS SE PONEN EN EL LADO PROPIETARIO
 Los metodos helper lo ponemos en el lado que no tiene el mappedBy
+
+Helpers = bidireccional-oneToMany
+			-ManyToOne-OneToMany
+			-ManyToMany
+
+los metodos helpers de una bidireccional
+por ejemplo de usuario a producto:
+
+addFavorito(Producto p){
+this.getFavoritos().add(p);
+p.getUsuarios().add(this);
+}
+			
+****DOCKER****
+Borrar todas las imagenes: docker rmi alpine
+Añadir imagenes: docker pull alpine
+Añadir un contenedor: docker run [nombre imagen]
+Eliminar contenedor:docker rm [nombre del contenedor]
+Docker run --name wp1 -d -p 8080:80 wordpress
+y despues en el navegador ponemos localhost:8080
+Docker ps -a para ver los que se esta ejecutando
+Parar un contenedor: docker stop [nombre del contenedor]
+Para hacer un reinicio : docker restart wp1
+ docker run alpine cat /etc/os-release
+docker run alpine/git --version
+docker run --name mialpine alpine
+docker run -it --name alpinec alpine -> (cuando te ponga el # ese) apk add nano 
+Borrar todo:docker rm $(docker ps -aq)
+
+
 
