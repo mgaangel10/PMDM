@@ -87,6 +87,12 @@ docker run alpine/git --version
 docker run --name mialpine alpine
 docker run -it --name alpinec alpine -> (cuando te ponga el # ese) apk add nano 
 Borrar todo:docker rm $(docker ps -aq)
+crear un contenedor de pgadmin ESTE ES EL QUE PIDE PARA LOS EXAMENES: docker run --name pgadmin -d -p 5050:80 -e PGADMIN_DEFAULT_EMAIL=perez.almig23@triana.salesianos.edu -e PGADMIN_DEFAULT_PASSWORD=12345678 dpage/pgadmin4
+docker run ubuntu /usr/bin/top -b -> como un administrador de tareas
+para poder inicar la makina virtual:docker run -dit --rm --name topdemo1 ubuntu /usr/bin/top -b
+luego:docker run topdemo1
+una maquina virtual:docker exec -it topdemo1 /bin/bash
 
+VER APARTADO PARTA CASA HOY 7.7
 
 
