@@ -1,1 +1,11 @@
-<p>pelicula-item works!</p>
+<div class="card" style="width: 18rem;">
+    {{pelicula.poster_path}}
+    <div class="card-body">
+      <h5 class="card-title">{{pelicula.title}}
+        
+      </h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+      <button class="btn btn-primary" (click)="clickDetalles()">View detail</button>
+    </div>
+  </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,EventEmitter,Input,Output } from '@angular/core';
+import { Pelicula } from 'src/app/module/module-pelicula/module-pelicula.module';
 
 @Component({
   selector: 'app-pelicula-item',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./pelicula-item.component.css']
 })
 export class PeliculaItemComponent {
+  @Input() pelicula!: Pelicula;
+  @Output() peliculaClick = new EventEmitter<number>();
+
+  clickDetalles(){
+    this.peliculaClick.emit(this.pelicula?.id);
+  }
 
 }

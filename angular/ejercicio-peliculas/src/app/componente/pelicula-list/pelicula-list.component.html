@@ -1,1 +1,3 @@
-<p>pelicula-list works!</p>
+<div class="row overflow-x-auto" id="movie-popular-row">
+    <app-pelicula-item *ngFor="let p of listaPeliculas" [pelicula]="p" (peliculaClick)="peliculaClickLista($event)"></app-pelicula-item>
+</div>
