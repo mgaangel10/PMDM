@@ -1,3 +1,13 @@
-<div class="row overflow-x-auto" id="movie-popular-row">
-    <app-pelicula-item *ngFor="let p of listaPeliculas" [pelicula]="p" (peliculaClick)="peliculaClickLista($event)"></app-pelicula-item>
+<div class="row" id="movie-popular-row">
+    <app-pelicula-item class="mt-2 col-3" *ngFor="let p of listaPeliculas" [pelicula]="p" (peliculaClick)="peliculaClickLista($event)"></app-pelicula-item>
 </div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" ><a class="page-link"
+          href="#">Previous</a></li>
+      <li *ngFor="let page of numeroPaginas" [ngClass]="paginaActual == page? 'page-item active' : 'page-item'"
+        (click)="clickPagina(page)" ><a class="page-link" href="#">{{page}}</a></li>
+      <li class="page-item" (click)="clickPagina(this.paginaActual+1)"><a class="page-link" 
+          href="#">Next</a></li>
+    </ul>
+  </nav>

@@ -1,5 +1,6 @@
 import { Component,EventEmitter,Input,Output } from '@angular/core';
-import { Pelicula } from 'src/app/module/module-pelicula/module-pelicula.module';
+import { Pelicula } from '../../module/module-pelicula/module-pelicula.module';
+
 
 @Component({
   selector: 'app-pelicula-item',
