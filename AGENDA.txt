@@ -87,12 +87,33 @@ docker run alpine/git --version
 docker run --name mialpine alpine
 docker run -it --name alpinec alpine -> (cuando te ponga el # ese) apk add nano 
 Borrar todo:docker rm $(docker ps -aq)
+
 crear un contenedor de pgadmin ESTE ES EL QUE PIDE PARA LOS EXAMENES: docker run --name pgadmin -d -p 5050:80 -e PGADMIN_DEFAULT_EMAIL=perez.almig23@triana.salesianos.edu -e PGADMIN_DEFAULT_PASSWORD=12345678 dpage/pgadmin4
 docker run ubuntu /usr/bin/top -b -> como un administrador de tareas
 para poder inicar la makina virtual:docker run -dit --rm --name topdemo1 ubuntu /usr/bin/top -b
+crea un contenedor basado en ubunto no te apropies de mi terminal elimina el contenedor cuando salga de ese contenedor ...(lo que signifca)
 luego:docker run topdemo1
 una maquina virtual:docker exec -it topdemo1 /bin/bash
 
 VER APARTADO PARTA CASA HOY 7.7
+SINTAXIS DE DOCKER RUN
+docker (opciones que se le puede dar) run [nombre de una imgen] (comando que se ejecuta al crear el contenedor)
+docker run alpine cat /etc/os-release lo que hace es ver la version que tenemos instalada despues de crear el contendor con la imagen de alpine
+
+Las opciones que hemos visto ;
+options: --name = damos un nombre
+	-d que no se apropie de la terminal y aparte te da un id ( se ejecuta en segundo plano)
+	--rm al parar el contenedor se elimina automaticamente
+	-p hacer parejas de puerto al host
+	-i conectar la entrada estandar ak contenedor
+	-t crea un terminar (seudo terminal) con linux 
+	-e listar variables de entorno
+Con docker attach nos podemos conectar al contenedor gracias al -b
+docker attach topdemo1 => y sale como que esta conectado gracias a esto:docker run -dit --rm --name topdemo1 ubuntu /usr/bin/top -b
+docker log para mostrar la traza que sigue el contenedor
+docker run --rm --name alpine curl [ip]=172.17.0.3  <-
+docker inspect httpdc | grep IPAddres para ver la ip |
+para saber a que puerto esta asociado : docker inspect [nombre del contenedor]
+
 
 
