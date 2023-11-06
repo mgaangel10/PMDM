@@ -187,6 +187,26 @@ LUEGO SI PONEMOS EN EL NAVEGADOR LOCALHOST:84 SALDRA EL HTML
 MIRAR este comando:docker run -d --rm --name apache_php -p 82:80 -v $PWD :/var/www/html \php:7.2-apache
 
 
+ejercicio 7.10:
+docker run -d --rm --name webapp -v C:\Users\mgaan\OneDrive\Escritorio\nginx:/usr/share/nginx/html -p 80:80 nginx
+ejercicio 7.11:
+PS C:\Users\mgaan> docker run -d --rm --name my_php -v C:\Users\mgaan\OneDrive\Escritorio/files:/var/www/html -p 80:80 nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+578acb154839: Pull complete
+e398db710407: Pull complete
+85c41ebe6d66: Pull complete
+7170a263b582: Pull complete
+8f28d06e2e2e: Pull complete
+6f837de2f887: Pull complete
+c1dfc7e1671e: Pull complete
+Digest: sha256:86e53c4c16a6a276b204b0fd3a8143d86547c967dc8258b3d47c3a21bb68d3c6
+Status: Downloaded newer image for nginx:latest
+dbb55081d3c51fd996398cc3e9014f83a2f0f8d51b2f48e7c92219b3918777a3
+PS C:\Users\mgaan> docker exec -it my_php /bin/bash
+root@dbb55081d3c5:/#
+
+
 
 
 
