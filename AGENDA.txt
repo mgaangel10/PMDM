@@ -71,7 +71,7 @@ addFavorito(Producto p){
 this.getFavoritos().add(p);
 p.getUsuarios().add(this);
 }
-			
+--------------------------------------------------------------------			
 ****DOCKER****
 Borrar todas las imagenes: docker rmi alpine
 Añadir imagenes: docker pull alpine
@@ -114,6 +114,71 @@ docker log para mostrar la traza que sigue el contenedor
 docker run --rm --name alpine curl [ip]=172.17.0.3  <-
 docker inspect httpdc | grep IPAddres para ver la ip |
 para saber a que puerto esta asociado : docker inspect [nombre del contenedor]
+
+---------------------------------------------------------------------
+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+----------------------------------------------------------------------
+****TIPOS DE HERENCIAS:*****
+
+*******MAPPED SUPER CLASS*******
+no es entidad
+no permitia consultas polimorfica. es decir desde la padre podemos ver si un vehiculo es un coche o un camion ...
+la clase padre es abstracta normalmente.
+la clase no va a la base de datos va la hija .
+repositorio solo de las hijas
+
+*******SINGLE TABLE*******
+unica tabla
+@discriminator/colum/value/formula
+la base puede ser o no abstracta
+repositorios de la
+consultas polimorfica
+repositorio de la base es suficiente ( porque son consultas polimorficas)
+
+*******JOINED*******
+tantas tablas como entidades
+una fk para cada hija-padre
+@primarykeyjoincolumn(...)
+repositorio para cada entidad
+
+*******TABLE PER CLASS*******
+no hay foreinkey
+una tabla por entidad
+UNION para una consulta 
+(no se usa apenas)
+para evitar los jooined de las consultas
+
+REPASO CONSULTAS DEL AÑO PASADO
+Spring data jpa: ->@query
+		->consultas deribadas por el nombre de los metodos es decir podemos poner una consulta de sql en el nombre del metodo, estas consultas se llaman consultas derived 
+		y spring data jpa se encarga de traducirla a sql por ejemplo findByApellidosAndNombre(string nombre, string apellidos),findFirstBy...OrderBy....(...)=> en este caso devuelve un optinal
+		(estos ejemplos son con una sola entidad,pero podemos hacerlo con varias entidades como por ejemplo)
+		(en este caso suponemos que estamos en el repositorio alumno lo que queremos es buscar en alumno por el nombre del curso)
+		findByCursoNombre(string nombre)
+	
+Consultas jpql:
+select a from Alumno a 
+where a.fechaNacimiento = ?1/:[un_nombre]; podemos utilizar la triple comillas para poder hacer la consulta en varias lineas, luego para pasar parametros lo podemos poner con el ?1 y este se utiliza para el 
+parametro 1 si fuera ?2 esparar el segundo parametro o se puede dar con : y un numbre 
+(el nombre tiene que ser con barra baja es decir si es nomnbre compuesto tiene que ser fecha_nacimiento). 
+el a.fechaNaciomiento no hay que llamarlo como se llame en la base de datos se llama con camelCase es decir asi: fecha_nacimiento.
+
+QUEREMOS OBTENER ESTANDO EN EL REPO CURSO LOS ALUMNOS DE 2ºDAM siendo la entidad tipo LAZY=>
+select c from Curso c 
+joinfetch c.alumnos
+where c.nombre = ?1
+sin el joinfetch daria un error de tipo lazy . La consulta lo que mostraria seria los alumnos por el nombre de los alumnos por eso ponemos = ?1 porque lo que queremos pasar es el nombre del curso
+ESTE ES EL MODELO DE DATOS DE ESTE EJEMPLO:
+Curso:	|	    |Alumno
+-id	|	    |-id
+-nombre	|1-------1.*|-nombre
+-tutor	|	    |-apellidos	     
+-alumnos|           |-fec_nac
+	|	    |-curso
+
+
+
+
 
 
 
