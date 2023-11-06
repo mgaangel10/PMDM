@@ -176,6 +176,17 @@ Curso:	|	    |Alumno
 -alumnos|           |-fec_nac
 	|	    |-curso
 
+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+*********DOCKER**********
+=> docker run -d --rm --name devtest4 -v C:\Users\perez.almig23_triana\Desktop\nginx:/usr/share/nginx/html -p 84:80 nginx
+LO QUE HACE ESTO ES CREAR UN CONTENDOR CON UNA IMAGEN DE NGINX LLAMADA DEVTEST4 Y QUE TENGA PUERTO 84
+Y VA A CREAR UNA CARPETA EN EL ESCRITORIO LLAMADA NGINX DENTRO DE ESA CARPETA CREAMOS UN HTML SIMPLE PARA PROBAR Y LUEGO HACEMOS EL SIGUIENTE COMANDO
+=> docker exec -it devtest4 /bin/bash
+LUEGO SI PONEMOS EN EL NAVEGADOR LOCALHOST:84 SALDRA EL HTML 
+--------------------***PARA CASA***-------------------------
+MIRAR este comando:docker run -d --rm --name apache_php -p 82:80 -v $PWD :/var/www/html \php:7.2-apache
+
+
 
 
 
