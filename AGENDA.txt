@@ -219,8 +219,19 @@ PERO AHORA QUIERO QUE EN ASIGNATURA ME DEVUELVA UNA LISTA DE ALUMNOS SIN EN EL M
 @Query("""select a from Alumno a 
 where ?1 MEMBER OF a.asignaturas""")
 List <Alumno> buscraAlumnoPorAsignaturaID(Asignatura a);
+ ejercicio 7.12:
+1-docker run --name <nombre_del_contenedor> <imagen_de_docker>
+2-docker exec -it <nombre_del_contenedor> bash
+3-mysql -u root -p
+4-SHOW DATABASES LIKE '<nombre_de_la_base_de_datos>';
 
-
+ejercicio 7.13:
+1-docker run --name mysql_container_2 -v mysql_data:/var/lib/mysql <imagen_de_docker>
+2-docker exec -it mysql_container_2 bash
+3-mysql -u root -p
+ 4-USE tienda;
+	SHOW TABLES;
+5- docker volume rm mysql_data
 
 
 
