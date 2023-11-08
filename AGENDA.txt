@@ -165,7 +165,7 @@ el a.fechaNaciomiento no hay que llamarlo como se llame en la base de datos se l
 
 QUEREMOS OBTENER ESTANDO EN EL REPO CURSO LOS ALUMNOS DE 2ºDAM siendo la entidad tipo LAZY=>
 select c from Curso c 
-joinfetch c.alumnos
+join fetch c.alumnos
 where c.nombre = ?1
 sin el joinfetch daria un error de tipo lazy . La consulta lo que mostraria seria los alumnos por el nombre de los alumnos por eso ponemos = ?1 porque lo que queremos pasar es el nombre del curso
 ESTE ES EL MODELO DE DATOS DE ESTE EJEMPLO:
@@ -205,6 +205,21 @@ Status: Downloaded newer image for nginx:latest
 dbb55081d3c51fd996398cc3e9014f83a2f0f8d51b2f48e7c92219b3918777a3
 PS C:\Users\mgaan> docker exec -it my_php /bin/bash
 root@dbb55081d3c5:/#
+
+**************************************************************************
+-+-+-+-+-+--+-+-+-+-+-+-+-+REPASO DE CONSULTAS -+-+-+-+-+-+--+-+-+-+-+-+-+-
+**************************************************************************
+CONUSLTA EN LA QUE BUSQUE UN ALUMNO POR SU ID Y DEVUELVA UNA LISTA DE SUS ASIGANTURAS siendo = Unidireccional
+select a 
+from Almuno a 
+join fecth a.asignatura
+where a.id=?1
+
+PERO AHORA QUIERO QUE EN ASIGNATURA ME DEVUELVA UNA LISTA DE ALUMNOS SIN EN EL MODELO DE DATOS HAYA ESA ASOCIACION
+@Query("""select a from Alumno a 
+where ?1 MEMBER OF a.asignaturas""")
+List <Alumno> buscraAlumnoPorAsignaturaID(Asignatura a);
+
 
 
 
