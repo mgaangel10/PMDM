@@ -184,11 +184,17 @@ Y VA A CREAR UNA CARPETA EN EL ESCRITORIO LLAMADA NGINX DENTRO DE ESA CARPETA CR
 => docker exec -it devtest4 /bin/bash
 LUEGO SI PONEMOS EN EL NAVEGADOR LOCALHOST:84 SALDRA EL HTML 
 --------------------***PARA CASA***-------------------------
+
+
+
+
+
 MIRAR este comando:docker run -d --rm --name apache_php -p 82:80 -v $PWD :/var/www/html \php:7.2-apache
 
 
 ejercicio 7.10:
 docker run -d --rm --name webapp -v C:\Users\mgaan\OneDrive\Escritorio\nginx:/usr/share/nginx/html -p 80:80 nginx
+
 ejercicio 7.11:
 PS C:\Users\mgaan> docker run -d --rm --name my_php -v C:\Users\mgaan\OneDrive\Escritorio/files:/var/www/html -p 80:80 nginx
 Unable to find image 'nginx:latest' locally
@@ -203,9 +209,15 @@ c1dfc7e1671e: Pull complete
 Digest: sha256:86e53c4c16a6a276b204b0fd3a8143d86547c967dc8258b3d47c3a21bb68d3c6
 Status: Downloaded newer image for nginx:latest
 dbb55081d3c51fd996398cc3e9014f83a2f0f8d51b2f48e7c92219b3918777a3
+
 PS C:\Users\mgaan> docker exec -it my_php /bin/bash
 root@dbb55081d3c5:/#
 
+
+
+
+
+******************************9:12 08/11/2023*****************************
 **************************************************************************
 -+-+-+-+-+--+-+-+-+-+-+-+-+REPASO DE CONSULTAS -+-+-+-+-+-+--+-+-+-+-+-+-+-
 **************************************************************************
@@ -219,6 +231,11 @@ PERO AHORA QUIERO QUE EN ASIGNATURA ME DEVUELVA UNA LISTA DE ALUMNOS SIN EN EL M
 @Query("""select a from Alumno a 
 where ?1 MEMBER OF a.asignaturas""")
 List <Alumno> buscraAlumnoPorAsignaturaID(Asignatura a);
+Esto es para buscar en una coleccion porque a.asignaturas es una coleccion.
+**************************************************************************
+-+-+-+-+-++-+-+-+-+-+-+-+-EJERCICIOS DOCKER-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-
+**************************************************************************
+
  ejercicio 7.12:
 1-docker run --name <nombre_del_contenedor> <imagen_de_docker>
 2-docker exec -it <nombre_del_contenedor> bash
@@ -232,6 +249,76 @@ ejercicio 7.13:
  4-USE tienda;
 	SHOW TABLES;
 5- docker volume rm mysql_data
+
+************************************9:13 09/11/2023*****************************
+-+-+-++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-MAS CONSULTAS-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+********************************************************************************
+No siempre se puede devolver se puede devolver por ejemplo un dto
+por ejemplo en este caso tendriamos que hacer una subconsultas ya que queremos saber el numero total de asignaturas de un alumno ATENTO:
+@Query"""
+	select new com.salesianostriana.dam.gradesapi.dto.GetAlumnoDto(
+	a.id,a.nombre || ' ' ||a.apellidos, (
+	select size(al.asignaturas)
+from Alumno al
+join fetch al.asignaturas
+where al.id = a.id))
+	from Alumno a """)
+LIst<GetAlumnoDto>buscarAlumnosConCantidadAsignaturas();
+---------------------------------------
+---------------------------------------
+@Query"""
+	select new com.salesianostriana.dam.gradesapi.dto.GetAlumnoDto(
+	a.id,a.nombre || ' ' ||a.apellidos, size(a.asignaturas))
+	from Alumno a 
+	join fetch a.asignaturas""")
+LIst<GetAlumnoDto>buscarAlumnosConCantidadAsignaturas();
+
+como hacer una consulta en la qe te devuelva un conjunto de resultados y NO te traiga TODOS los resultados
+Una consulta en la que te traiga los alumnos de 20 en 20 por ejemplo
+@Query ("""
+select a from Alumno a 
+""")
+Page<Alumno> paginacionAlumno (Pageable pageable);
+Page<Alumno> result = alumnoRepositorio..paginacionAlumno(
+PageRequest.of(pageNumber:0, pageSize:20)
+);
+...
+**************************************************************
+-+--+-+-+-+-+-+-+-+-+--+-+-+-DOCKER-+-+-+-+-+-+-+-+-+-+--+-+-+
+**************************************************************
+docker run -d --rm --name mysqlc -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -v mysql_data:/var/lib/mysql mysql:5.7.28 : la verda esque no se para que es esto
+********************************************************************
+-+--+-+-+-+-+-+-+-+-+--+-+-+-DOCKER REDES-+-+-+-+-+-+-+-+-+-+--+-+-+
+********************************************************************
+-bridge: es la red que se utilizara por defecto
+-none: si un ordenador se conecta a esta red el ordenador no tiene red
+-host
+
+->docker network ls :listar las redes
+ docker network inspect bridge: insepcionar la redes mas detalladamente
+docker attach alpine1 : conectarnos al contenedor alpine1
+	- luego ponemos ip addr show : para mostrar la ip , la mascara de red...
+	- luego ponemos ping -c 2 google.com para poder conectarnos a cualquier url de google
+	otra forma de conectarnos:ping -c 2 172.17.03 via ip
+docker network create --driver bridge alpine-net: para crear una red nueva
+creamos ahora:docker run -dit --rm --name alpine1 --network alpine-net alpine ash
+docker run -dit --rm --name alpine2 --network alpine-net alpine ash
+docker run -dit --rm --name alpine4 --network alpine-net alpine ash
+docker run -dit --rm --name alpine3 alpine ash: esta no va estar conectada a internet
+
+docker network connect bridge alpine4: conectamos alpine4 a internet
+docker network inspect bridge:inspeccionamos
+docker attach alpine1
+	-ping -c 2 alpine2: nos conectamos a alpine2
+*******************13:19 10/11/2023****************************
+***************************************************************
+--+-+-+-+-+-+Terminar la paginacion del otro dia-+-+-+-+-+-+-+-
+***************************************************************
+@GetMapping("/")
+public responseEntity<?> todos(@RequestParam("n") int numeroPagina,@RequestParam("s") int tamanioPagina){
+
+
+}
 
 
 
