@@ -1,0 +1,28 @@
+-Para descargar una IMAGEN : docker pull [nombre de la imgen][version]
+-Eliminar TODAS las IMAGENES DEL TIRON : docker rmi $(docker images -q)
+-Eliminar una IMAGEN por su nombre: docker rmi [nombre]
+-Para crear y ejecutar un CONTENEDOR : docker run
+
+:-it: permiten interactuar con el contenedor y se te asigna uan terminal dentro del nuevo contenedor
+:--rm : elimina automaticamente el contenedor cuando se detiene
+:-d : hace que el contenedor se ejecute en DETACHED es decir, en segundo plano
+:-p 3307:3306: esta opcion vincula el puerto 3307 del ordenador al 3306 del contenedor=>IMPORTANTE
+:-P: con la p en mayuscula nos lo asigna solo
+: -v /Desktop/mariadb-backup:/backup : vincula el directorio /Desktop/mariadb-backup con el directorio del ordenador /backup del contenedor . Esto permite hacer copias de seguridad
+:-e : estabalece las variables de entorno
+:--name : da nombre al contenedor
+:-b: para cuando pongamos una ruta que siga ejecutandose en segundo plano
+Para escoger la version : mariadb:10.6.15
+Listar los contenedores que estan en ejecucion/detenidos: docker ps/ -a => es lo mismo decir compruebe el estado
+Mostrar la salida estandar de un contenedor: docker logs [options] [nombre contenedor]
+Eliminar un contenedor: docker rm [nombre]
+Volver a conectarte al terminal del contenedor que esta en ejecucion: docker attach [nombre del contenedor]
+EXEC: docker exec -it [nombre del contenedor] /bin/bash : para que se te habra un terminal , y ponemos ps aux para ver que procesoso estan en ejecucion dentro del contenedor
+IP: docker inspect [nombre del contendor]
+
+PAGINA 44
+PAGINA 51
+
+
+
+
