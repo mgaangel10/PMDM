@@ -320,6 +320,23 @@ public responseEntity<?> todos(@RequestParam("n") int numeroPagina,@RequestParam
 
 }
 
+++-+--+-+-+-+-+-+-+-++-+-+-+-+-+-+-+-+-+-++-+-+-+-+-+--+-+-+-+
+****************EJERCICIO RESULETO DOCKER*********************
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-
+
+docker network create pg1-net
+docker network create pg2-net
+docker inspect
+docker volumen create pg1_data
+docker volumen create pg2_data
+docker run -d --name pg1 -e POSTGREST_USER=angel -e POSTGRES_PASSWORD=12345678 -v pg1_data_var:var/li/postgresql/data --network pg1-net postgres:16-alpine
+docker run -d --name pg2 -e POSTGREST_USER=angel2 -e POSTGRES_PASSWORD=123456789 -v pg2_data_var:var/li/postgresql/data --network pg2-net postgres:16-alpine
+docker run -d --name pgadmin-aall -e PGADMIN_DEFAULT_EMAIL=admin@gmail.com -e PGADMIN_DEFAULT_PASSWORD=1 -p 5051:80 -v C:/Users/......:/var/lib7pgadmin dpage/pgadmin4
+docker network connect pg1-net pgadmin-all
+docker network connect pg2-net pgadmin-all
+
+
+
 
 
 
