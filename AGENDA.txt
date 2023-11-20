@@ -334,12 +334,103 @@ docker run -d --name pg2 -e POSTGREST_USER=angel2 -e POSTGRES_PASSWORD=123456789
 docker run -d --name pgadmin-aall -e PGADMIN_DEFAULT_EMAIL=admin@gmail.com -e PGADMIN_DEFAULT_PASSWORD=1 -p 5051:80 -v C:/Users/......:/var/lib7pgadmin dpage/pgadmin4
 docker network connect pg1-net pgadmin-all
 docker network connect pg2-net pgadmin-all
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+****************************SEGURIDAD*************************************
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+Lo primero de la seguridad: Autenticacion: quin es usted?
+			    Autorizacion: que se te permite hacer?
+AUTENTICATION: SecurityConetextHolder que contiene SecurityContext que contiene un objecto llamado Authentication :-Principal: usuario
+														  :-Credenciales:contraseñas
+														  : Authorites:lo que se le permite hacer
+Este proceso lo hce una interfaz llamada AutenticationManager es lo que hace el proceso de autenticacion.
+En GrantedAuthority se guardan los privilegios de un principal.
+AUTHORIZATIONMANAGER:
+Un Authentication(Principal + Authorities)
+Un SecureObject...
+AUTHORIZATIONMANAGER:
+-RequestMatcherDelegatingAuthorizationManager
+-AuthorityAuthorizationManager
+-AuthenticAuthorizationManager
+-Jsr250AuthorizationManager
+-...
 
+@EnableWebSecurity => va a ser el corazon de nuestra seguridad
+-Anotacion a nivel de clase
+-Unida a @Configuration
+-Indica que la clase tendra la configuracion de seguridad.
+	-A traves de WebSecurityCustomizer
+	-A traves de SecurityFilterChain
 
+AutgenticationManagerBuilder
+-Buikder utilizando para construir AuthenticationManager
+-PErmite consturir facilmente un AuthenticationManager en memoria LDAP,JDBC o con UserDetailsService
+-Tambien podemos construir baasado en cualquier otro
+AuthenticationProvider que implementemos.
 
+UserDetails
+-Interfaz que representa la informacion nuclear de un usuario
+-Almacena la informacion que posteriormente sera encapsulada en un objeto tipo Authentication
+-Las implementaciones de esta interfaz
 
+PasswordEncoder
+-Sirve para almacenar las contraseñas de forma segura
+-De esta forma, no se guardan en texto plano , sino codificadas 
 
+DaoAuthenticationProvider
+-Es un AuthenticationProvider basado en USerDetailsService + PasswordEnconder
 
+@AuthenticationPrincipal
+-Sirve para obtener el objeto authentication.getPrincipal() en un argumento de un metodo
+-Si es SecurityContextHolder hemos almacenado una instancia de nuestra clase User, la podemos obtener en un metodo (por ejemplo de controlador)
 
+Json web token
+-Josn Web Token (RFC 7519)
+-Es un mecanismo para propagar de forma segura la identidad (y claims o privilegios)entre dos partes
+-Los privilegios se codifican como objetos JSON	
+-Estos objetos se usan en el cuerpo (payload) de un mensaje firmado digitalmente
 
+Token JWT
 
+-Se trata de una cadena de carcteres con 3 partes codificadas en Base64
+-Las partes estan separadas por un punto
+-Podemos utilizar un debugger online para decodificarlo
+
+--MODELO DE USUARIOS--
+-Representara a una persona que utilice nuestro sistema
+-Informacion basica: nombre de usuario,contraseña,avatar y nombre completo
+-Ademas el rol o roles de nuestra aplicacion
+
+--MAS DE UNA 1 CLASE PARA EL MODELO DE USUARIO--
+En nuestro caso el BO para el usuario y para la capa de seguridad seran el mismo
+
+--MAS DE 1 CLASE PARA EL MODELO DE DATOS--
+-Es posible que nos pueda interesar tener mas de una clase para represenatar los usuario
+	Una clase para almacenar las cuestiones propias del usuario de nuestro sistema
+
+*****VIENDO EJEMPLO DE SEGURIDAD******
+el id generate uuid:
+
+@Id
+@GeneratedValue(generator = "UUID")
+@GenericGenerator(
+name = "UUID",
+strategy = "org.hibernate.id.UUIDGenerator",
+parameters = {
+@Parameter(
+
+name = "uuid_gen_strategy_class",
+value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
+)
+}
+)
+@Column(columnDefinition = "uuid")
+private UUID id;
+
+al implementar userDetails en esta clase debemos implementar el metodo
+getAuthorities:
+public Collections<? extends GrantedAuthority> getAuthorities(){
+return roles.stream()
+.map(role -> "ROLE_" + role)
+.map(SimpleGrantedAuthority::new)
+.collect(Collectors.toList());
+}
