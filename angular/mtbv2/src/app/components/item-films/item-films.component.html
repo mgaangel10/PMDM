@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;"  [ngStyle]="{
+  'background-image':
+    'url(https://image.tmdb.org/t/p/w500' + Movie.poster_path + ')'
+}">
+      <div class="card-body">
+      <h5 class="card-title">{{Movie.title}}</h5>
+      <p class="card-text">{{Movie.overview}}.</p>
+      <a href="#" class="btn btn-primary"  [routerLink]="['/lista', Movie.id]">Go somewhere</a>
+    </div>
+  </div>
