@@ -12,12 +12,13 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.development';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
-import { UserNewComponent } from './components/user-new/user-new.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
+import { GamesComponent } from './components/games/games.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, GamesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

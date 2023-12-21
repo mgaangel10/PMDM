@@ -7,9 +7,11 @@ import { UserServiceService } from '../../services/user-service.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-name:string = '';
+player1!:string
+player2!:string;
 constructor (private user:UserServiceService){}
-addUser() {
-  this.user.createUser(this.name);
+addUser(player1:string,player2:string) {
+  this.user.createUser(player1,player2);
 }
+
 }

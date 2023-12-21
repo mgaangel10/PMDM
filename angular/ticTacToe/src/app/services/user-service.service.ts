@@ -5,9 +5,12 @@ import {
   collection,
   getDocs,
   query,
+  where,
+  onSnapshot,
 } from '@angular/fire/firestore';
 
-const COLLECTION_USERS = 'users';
+const COLLECTION_USERS = 'game';
+const COLLECTION_GAMES = 'game';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +19,22 @@ export class UserServiceService {
 
   constructor(public firestore: Firestore) {}
 
-  async createUser(name: string) {
+  async createUser(player1: string,player2:string) {
     const docRef = await addDoc(collection(this.firestore, COLLECTION_USERS), {
-      name: name,
+      player1: player1,
+      player2:null
       
     });
     console.log('Document written with ID: ', docRef.id);
   }
 
   getUsers() {}
+  getEmptyGame() {
+    return query(
+      collection(this.firestore, COLLECTION_GAMES),
+      where('player2', '==', 'null')
+    );
+  }
+
+  
 }

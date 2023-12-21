@@ -10,9 +10,14 @@
             <h3>Indique su nombre</h3>
         </div>
         <div>
-            <input type="text" name="" id="" placeholder="Inique su nombre">
+            <form (ngSubmit)="addUser(player1,player2)">
+                <p> name </p>
+                <input name="name" [(ngModel)]="player1">
+                
+                <button type="submit"> submit </button>
+            </form>
         </div>
-        <button >Iniciar partidaaaaa</button>
+       
     </div>
     </div>
    
