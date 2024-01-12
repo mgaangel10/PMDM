@@ -7,15 +7,29 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("actores")),
       body: ListView(
         children: [
           Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 150,
+                  color: Colors.amberAccent,
+                  child: const Text("hola"),
+                )
+              ],
+            ),
+          ),
+          Expanded(
               child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                child: ImagenClass(),
+                height: 150,
                 width: double.infinity,
+                color: Colors.blueAccent,
+                child: const Text("data"),
               )
             ],
           ))
