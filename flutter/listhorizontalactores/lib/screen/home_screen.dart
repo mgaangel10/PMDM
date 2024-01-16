@@ -22,10 +22,14 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Expanded(
+            
               child: Row(
+                
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              
               Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.0)),
                 height: 150,
                 width: double.infinity,
                 color: Colors.blueAccent,
