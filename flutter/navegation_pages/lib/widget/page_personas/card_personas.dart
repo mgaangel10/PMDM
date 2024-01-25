@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class CardPersonas extends StatelessWidget {
   final String nombre;
   final String foto;
+  final double popularidad;
 
-  const CardPersonas({Key? key, required this.nombre, required this.foto})
+  const CardPersonas(
+      {Key? key,
+      required this.nombre,
+      required this.foto,
+      required this.popularidad})
       : super(key: key);
 
   @override
@@ -35,10 +40,20 @@ class CardPersonas extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: Text(
-                  nombre,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 18),
+                child: Column(
+                  children: [
+                    Text(
+                      nombre,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      popularidad.toString(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ],
                 ),
               ),
             ],
